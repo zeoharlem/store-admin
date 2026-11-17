@@ -5,7 +5,7 @@ import { useState, type FormEvent } from 'react'
 
 // Next Imports
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 // Third-party Imports
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
@@ -32,6 +32,13 @@ interface LoginData {
 
 const LoginForm = () => {
   const router = useRouter()
+  const searchParams = useSearchParams()
+
+  const requestedDestination = searchParams.get('next')
+  const destination =
+    requestedDestination?.startsWith('/') && !requestedDestination.startsWith('//')
+      ? requestedDestination
+      : '/dashboard/orders'
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -51,7 +58,7 @@ const LoginForm = () => {
 
       unwrapResponse(response.data, response.status)
 
-      router.replace('/dashboard/orders')
+      router.replace(destination)
       router.refresh()
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : 'Unable to sign in. Please try again.')

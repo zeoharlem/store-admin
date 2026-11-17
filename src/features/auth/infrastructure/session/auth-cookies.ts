@@ -3,8 +3,10 @@ import 'server-only'
 
 import { cookies } from 'next/headers'
 
-const ACCESS_COOKIE = 'vendor_access_token'
-const REFRESH_COOKIE = 'vendor_refresh_token'
+import {
+  ACCESS_COOKIE,
+  REFRESH_COOKIE
+} from './auth-cookie-names'
 
 export interface AuthTokens {
   accessToken: string
