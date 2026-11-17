@@ -1,0 +1,40 @@
+src/
+├── app/
+│   ├── (blank)/
+│   ├── (pages)/
+│   ├── api/
+│   ├── layout.tsx
+│   └── proxy.ts
+│
+├── features/
+│   ├── auth/
+│   │   ├── application/
+│   │   ├── domain/
+│   │   └── infrastructure/
+│   │
+│   ├── products/
+│   │   ├── application/
+│   │   ├── domain/
+│   │   └── infrastructure/
+│   │
+│   ├── orders/
+│   │   ├── application/
+│   │   ├── domain/
+│   │   └── infrastructure/
+│   │
+│   └── vendors/
+│       ├── application/
+│       ├── domain/
+│       └── infrastructure/
+│
+├── components/
+│   ├── layouts/
+│   ├── navigation/
+│   └── shared/
+│
+└── shared/
+    ├── infrastructure/
+    │   └── http/
+    ├── hooks/
+    ├── types/
+    └── utils/
