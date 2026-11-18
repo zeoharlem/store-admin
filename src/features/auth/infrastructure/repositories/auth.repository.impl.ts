@@ -25,10 +25,7 @@ interface VendorLoginData {
 
 export class AuthRepositoryImpl implements AuthRepository {
     async login(credentials: LoginCredentials): Promise<LoginResult> {
-        const response = await serverAxios.post<ApiResponse<VendorLoginData>>(
-            '/auth/login',
-            credentials
-        )
+        const response = await serverAxios.post<ApiResponse<VendorLoginData>>('/auth/login', credentials)
 
         const data = unwrapResponse(response.data, response.status)
 

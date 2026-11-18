@@ -5,7 +5,12 @@ export const AUTH_ROUTES = {
 
 export const PROTECTED_ROUTE_PREFIXES = [
     '/dashboard',
-    '/apps'
+    '/apps',
+    '/orders',
+    '/products',
+    '/payments',
+    '/disputes',
+    '/settings'
 ] as const
 
 export const AUTH_ONLY_ROUTES = [

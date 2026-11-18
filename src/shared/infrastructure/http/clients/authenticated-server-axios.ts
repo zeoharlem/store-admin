@@ -34,7 +34,7 @@ if (!baseURL) {
   throw new Error('VENDOR_API_BASE_URL is not configured.')
 }
 
-const apiBaseURL = `${baseURL.replace(/\/+$/, '')}/api/v1`
+const apiBaseURL = `${baseURL.replace(/\/+$/, '')}/vendors-api/api/v1`
 
 /**
  * Converts Axios request headers into an AxiosHeaders instance.

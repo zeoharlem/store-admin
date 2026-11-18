@@ -336,9 +336,9 @@ const OrdersDashboard = () => {
 
       <SalesMetricsCard className='col-span-full *:data-[slot=card-content]:space-y-6 xl:col-span-2' />
 
-      <Card className='col-span-full w-full py-0'>
-        <TransactionDatatable data={transactionData} />
-      </Card>
+      {/*<Card className='col-span-full w-full py-0'>*/}
+      {/*  <TransactionDatatable data={transactionData} />*/}
+      {/*</Card>*/}
     </div>
   )
 }
