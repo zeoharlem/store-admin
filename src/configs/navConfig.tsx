@@ -49,15 +49,13 @@ export const navItems: NavItem[] = [
     items: [
       {
         icon: 'Package',
-        label: 'Orders',
+        label: 'Dashboard',
         href: '/dashboard/orders'
       },
       {
         icon: 'TrendingUp',
-        label: 'Sales',
-        href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/dashboard/sales',
-        target: '_blank',
-        ////badge: 'Pro',
+        label: 'Sales & Orders',
+        href: '/orders',
         badgeClassName: 'right-8'
       },
       {
@@ -65,6 +63,7 @@ export const navItems: NavItem[] = [
         label: 'Finance',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/dashboard/finance',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
@@ -73,6 +72,7 @@ export const navItems: NavItem[] = [
         label: 'Logistics',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/dashboard/logistics',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
@@ -81,6 +81,7 @@ export const navItems: NavItem[] = [
         label: 'Productivity',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/dashboard/productivity',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
@@ -89,6 +90,7 @@ export const navItems: NavItem[] = [
         label: 'Campaign',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/dashboard/campaign',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
@@ -97,6 +99,7 @@ export const navItems: NavItem[] = [
         label: 'Analytics',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/dashboard/analytics',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
@@ -105,6 +108,7 @@ export const navItems: NavItem[] = [
         label: 'Payments',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/dashboard/payments',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
@@ -113,12 +117,14 @@ export const navItems: NavItem[] = [
         label: 'eCommerce',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/dashboard/ecommerce',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
       {
         icon: 'LayoutTemplate',
         label: 'Layouts',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8',
         childItems: [
@@ -177,6 +183,7 @@ export const navItems: NavItem[] = [
         label: 'Chat',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/apps/chat',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
@@ -185,6 +192,7 @@ export const navItems: NavItem[] = [
         label: 'Kanban',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/apps/kanban',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
@@ -193,12 +201,14 @@ export const navItems: NavItem[] = [
         label: 'Contact',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/apps/contact',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
       {
         icon: 'ShieldCheckIcon',
         label: 'Roles & Permissions',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8',
         childItems: [
@@ -235,6 +245,7 @@ export const navItems: NavItem[] = [
             label: 'Notifications',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/user-settings?setting=notifications',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           },
@@ -242,6 +253,7 @@ export const navItems: NavItem[] = [
             label: 'Integrations',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/user-settings?setting=integrations',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           },
@@ -249,6 +261,7 @@ export const navItems: NavItem[] = [
             label: 'Members',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/user-settings?setting=members',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           },
@@ -256,6 +269,7 @@ export const navItems: NavItem[] = [
             label: 'Security',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/user-settings?setting=security',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           },
@@ -263,6 +277,7 @@ export const navItems: NavItem[] = [
             label: 'Billing & Usage',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/user-settings?setting=billing',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           }
@@ -284,6 +299,7 @@ export const navItems: NavItem[] = [
             label: 'Teams',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/user-profile?view=teams',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           },
@@ -291,6 +307,7 @@ export const navItems: NavItem[] = [
             label: 'Projects',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/user-profile?view=projects',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           }
@@ -308,6 +325,7 @@ export const navItems: NavItem[] = [
                 label: 'Login v2',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/login-v2',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               },
@@ -315,6 +333,7 @@ export const navItems: NavItem[] = [
                 label: 'Login v3',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/login-v3',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               }
@@ -328,6 +347,7 @@ export const navItems: NavItem[] = [
                 label: 'Register v2',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/register-v2',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               },
@@ -335,6 +355,7 @@ export const navItems: NavItem[] = [
                 label: 'Register v3',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/register-v3',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               }
@@ -348,6 +369,7 @@ export const navItems: NavItem[] = [
                 label: 'Forgot Password v2',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/forgot-password-v2',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               },
@@ -355,6 +377,7 @@ export const navItems: NavItem[] = [
                 label: 'Forgot Password v3',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/forgot-password-v3',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               }
@@ -368,6 +391,7 @@ export const navItems: NavItem[] = [
                 label: 'Verify Email v2',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/verify-email-v2',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               },
@@ -375,6 +399,7 @@ export const navItems: NavItem[] = [
                 label: 'Verify Email v3',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/verify-email-v3',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               }
@@ -388,6 +413,7 @@ export const navItems: NavItem[] = [
                 label: 'Reset Password v2',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/reset-password-v2',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               },
@@ -395,6 +421,7 @@ export const navItems: NavItem[] = [
                 label: 'Reset Password v3',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/reset-password-v3',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               }
@@ -408,6 +435,7 @@ export const navItems: NavItem[] = [
                 label: 'Two Steps v2',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/two-steps-v2',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               },
@@ -415,6 +443,7 @@ export const navItems: NavItem[] = [
                 label: 'Two Steps v3',
                 href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/auth/two-steps-v3',
                 target: '_blank',
+
                 ////badge: 'Pro',
                 badgeClassName: 'right-8'
               }
@@ -431,6 +460,7 @@ export const navItems: NavItem[] = [
             label: 'Error Page - 404',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/misc/error-page-404',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           },
@@ -438,6 +468,7 @@ export const navItems: NavItem[] = [
             label: 'Not Authorized - 401',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/misc/unauthorized-access-401',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           },
@@ -445,6 +476,7 @@ export const navItems: NavItem[] = [
             label: 'Forbidden - 403',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/misc/forbidden-403',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           },
@@ -452,6 +484,7 @@ export const navItems: NavItem[] = [
             label: 'Server Error - 500',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/misc/server-error-500',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           },
@@ -459,6 +492,7 @@ export const navItems: NavItem[] = [
             label: 'Under Maintenance',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/misc/maintenance-page',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           }
@@ -469,6 +503,7 @@ export const navItems: NavItem[] = [
         label: 'Landing Page',
         href: 'https://shadcn-nextjs-flow-landing-page.vercel.app/',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
@@ -477,6 +512,7 @@ export const navItems: NavItem[] = [
         label: 'Pricing',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/pricing',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
@@ -485,12 +521,14 @@ export const navItems: NavItem[] = [
         label: 'FAQ',
         href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/pages/faq',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
       {
         icon: 'FootprintsIcon',
         label: 'Onboarding',
+
         //////badge: 'Pro',
         badgeClassName: 'right-8',
         childItems: [
@@ -509,6 +547,7 @@ export const navItems: NavItem[] = [
       {
         icon: 'FileIcon',
         label: 'Empty State',
+
         //////badge: 'Pro',
         badgeClassName: 'right-8',
         childItems: [
@@ -539,6 +578,7 @@ export const navItems: NavItem[] = [
             label: 'Sticky Actions',
             href: 'https://shadcn-nextjs-admincn-admin-template.vercel.app/forms/form-layouts/sticky-actions',
             target: '_blank',
+
             ////badge: 'Pro',
             badgeClassName: 'right-8'
           }
@@ -557,6 +597,7 @@ export const navItems: NavItem[] = [
       {
         icon: 'ListTodoIcon',
         label: 'Form Wizard',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8',
         childItems: [
@@ -600,6 +641,7 @@ export const navItems: NavItem[] = [
         label: 'Card Nav',
         href: 'https://shadcnstudio.com/blocks/dashboard-and-application/card-nav',
         target: '_blank',
+
         ////badge: 'Pro',
         badgeClassName: 'right-8'
       },
