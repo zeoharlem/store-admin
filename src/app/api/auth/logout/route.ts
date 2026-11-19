@@ -1,5 +1,6 @@
 
 import { NextResponse } from 'next/server'
+
 import { ApiError } from '@/shared/infrastructure/http/errors/api-errors'
 import { logoutSession } from '@/features/auth/infrastructure/session/logout-session'
 

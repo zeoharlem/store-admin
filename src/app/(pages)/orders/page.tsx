@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card'
 import StatisticsCard from '@/views/dashboards/statistics/statistics-card-01'
 
 // import TransactionDatatable, { type Item } from '@/views/datatables/datatable-transaction'
-import { AdminOrdersDataTable } from '@/features/orders/presentation/components/admin-orders-view'
+import { AdminOrdersDataTable } from '@/features/orders/presentation/components/admin-orders-datatable'
 
 // Statistics card data
 const StatisticsCardData = [
