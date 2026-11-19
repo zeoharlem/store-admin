@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 
 // Next Imports
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Kumbh_Sans } from 'next/font/google'
 
 // Third-party Imports
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
@@ -21,6 +21,11 @@ import ScrollToTop from '@/components/layout/ScrollToTop'
 
 import DownloadButton from '@/components/layout/Download'
 
+const kumbhSans = Kumbh_Sans({
+  variable: "--font-kumbh",
+  subsets: ["latin"],
+});
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin']
@@ -32,14 +37,14 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'AdminCN - Free Shadcn Admin Dashboard Template',
+  title: 'AdminCN for Vendor',
   description:
-    'Build modern admin dashboards faster with AdminCN Free. A free shadcn admin dashboard template built with Tailwind CSS, featuring responsive layouts and essential pages.',
+    'Build modern admin dashboards faster with AdminCN.',
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'}`),
   openGraph: {
-    title: 'AdminCN - Free Shadcn Admin Dashboard Template',
+    title: 'AdminCN for Vendor',
     description:
-      'Build modern admin dashboards faster with AdminCN Free. A free shadcn admin dashboard template built with Tailwind CSS, featuring responsive layouts and essential pages.',
+      'Build modern admin dashboards faster with AdminCN',
     type: 'website',
     siteName: 'AdminCN',
     url: process.env.NEXT_PUBLIC_APP_URL,
@@ -49,15 +54,15 @@ export const metadata: Metadata = {
         type: 'image/png',
         width: 1200,
         height: 630,
-        alt: 'AdminCN - Free Shadcn Admin Dashboard Template'
+        alt: 'Build modern admin dashboards faster with AdminCN'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AdminCN - Free Shadcn Admin Dashboard Template',
+    title: 'AdminCN - for Vendor',
     description:
-      'Build modern admin dashboards faster with AdminCN Free. A free shadcn admin dashboard template built with Tailwind CSS, featuring responsive layouts and essential pages.'
+      'Build modern admin dashboards faster with AdminCN.'
   }
 }
 
@@ -65,7 +70,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
     <html
       lang='en'
-      className={cn(geistSans.variable, geistMono.variable, 'flex min-h-full w-full antialiased')}
+      className={cn(kumbhSans.variable, geistSans.variable, geistMono.variable, 'flex min-h-full w-full antialiased')}
       data-scroll-behavior='smooth'
       suppressHydrationWarning
     >
