@@ -13,6 +13,7 @@ import { Separator } from '@/components/ui/separator'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Skeleton } from '@/components/ui/skeleton'
 import { OrderActivityTimeline } from './order-activity-timeline'
+import { OrderPaymentInformation } from './order-payment-information'
 
 import type {
   AdminOrderDetails,
@@ -338,6 +339,8 @@ function OrderDetailsContent({ order }: { order: AdminOrderDetails }) {
               </CardContent>
             </Card>
           )}
+
+          <OrderPaymentInformation orderId={order.id} />
 
           <OrderActivityTimeline
             history={order.status_history ?? []}

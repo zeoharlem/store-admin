@@ -71,6 +71,24 @@ export interface AdminOrderDetails {
   customer: OrderDetailsCustomer | null
   vendor_orders: AdminVendorOrderDetails[]
   status_history: OrderStatusHistoryEntry[]
+  payments: AdminOrderPayment[]
+}
+
+export interface AdminOrderPayment {
+  id: string
+  order_id: string
+  provider: string
+  reference: string
+  provider_transaction_id: string | null
+  amount_minor: number
+  currency: string
+  status: string
+  failure_reason: string | null
+  initialized_at: string | null
+  verified_at: string | null
+  failed_at: string | null
+  created_at: string
+  updated_at: string
 }
 
 export interface OrderStatusHistoryEntry {
