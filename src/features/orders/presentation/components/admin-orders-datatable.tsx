@@ -1,31 +1,18 @@
-
 'use client'
 
 import { useMemo } from 'react'
 
-import {
-  flexRender,
-  getCoreRowModel,
-  type ColumnDef,
-  type PaginationState,
-  useReactTable
-} from '@tanstack/react-table'
+import { flexRender, getCoreRowModel, type ColumnDef, type PaginationState, useReactTable } from '@tanstack/react-table'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from '@/components/ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
 import type { AdminOrder } from '@/features/orders/domain/entities/order'
 import { useAdminOrders } from '@/features/orders/presentation/hooks/use-admin-orders'
 import { formatOrderAmount } from '@/utils/format-utils'
+import Link from 'next/link'
 
 function formatOrderDate(value: string): string {
   const date = new Date(value)
@@ -41,12 +28,7 @@ function formatOrderDate(value: string): string {
 }
 
 function getCustomerName(order: AdminOrder): string {
-  const name = [
-    order.customer.first_name,
-    order.customer.last_name
-  ]
-    .filter(Boolean)
-    .join(' ')
+  const name = [order.customer.first_name, order.customer.last_name].filter(Boolean).join(' ')
 
   return name || order.customer.email
 }
@@ -82,10 +64,7 @@ function StatusBadge({ status }: { status: string }) {
   const label = status.replaceAll('_', ' ')
 
   return (
-    <Badge
-      variant='outline'
-      className={`capitalize ${getStatusClass(status)}`}
-    >
+    <Badge variant='outline' className={`capitalize ${getStatusClass(status)}`}>
       {label}
     </Badge>
   )
@@ -123,7 +102,9 @@ export function AdminOrdersDataTable() {
         header: 'Order',
         cell: ({ row }) => (
           <span className='font-medium'>
-            {row.original.order_number}
+            <Link href={`/orders/${row.original.id}`} className='text-primary font-medium hover:underline'>
+              {row.original.order_number}
+            </Link>
           </span>
         )
       },
@@ -132,12 +113,8 @@ export function AdminOrdersDataTable() {
         header: 'Customer',
         cell: ({ row }) => (
           <div className='min-w-0'>
-            <p className='font-medium'>
-              {getCustomerName(row.original)}
-            </p>
-            <p className='text-muted-foreground text-xs'>
-              {row.original.customer.email}
-            </p>
+            <p className='font-medium'>{getCustomerName(row.original)}</p>
+            <p className='text-muted-foreground text-xs'>{row.original.customer.email}</p>
           </div>
         )
       },
@@ -146,49 +123,34 @@ export function AdminOrdersDataTable() {
         header: 'Amount',
         cell: ({ row }) => (
           <span className='font-medium tabular-nums'>
-            {formatOrderAmount(
-              row.original.total_minor,
-              row.original.currency
-            )}
+            {formatOrderAmount(row.original.total_minor, row.original.currency)}
           </span>
         )
       },
       {
         accessorKey: 'status',
         header: 'Order status',
-        cell: ({ row }) => (
-          <StatusBadge status={row.original.status} />
-        )
+        cell: ({ row }) => <StatusBadge status={row.original.status} />
       },
       {
         accessorKey: 'payment_status',
         header: 'Payment',
-        cell: ({ row }) => (
-          <StatusBadge status={row.original.payment_status} />
-        )
+        cell: ({ row }) => <StatusBadge status={row.original.payment_status} />
       },
       {
         accessorKey: 'vendor_order_count',
         header: 'Vendor orders',
-        cell: ({ row }) => (
-          <span>{row.original.vendor_order_count}</span>
-        )
+        cell: ({ row }) => <span>{row.original.vendor_order_count}</span>
       },
       {
         accessorKey: 'item_count',
         header: 'Items',
-        cell: ({ row }) => (
-          <span>{row.original.item_count}</span>
-        )
+        cell: ({ row }) => <span>{row.original.item_count}</span>
       },
       {
         accessorKey: 'created_at',
         header: 'Date',
-        cell: ({ row }) => (
-          <span className='whitespace-nowrap text-sm'>
-            {formatOrderDate(row.original.created_at)}
-          </span>
-        )
+        cell: ({ row }) => <span className='text-sm whitespace-nowrap'>{formatOrderDate(row.original.created_at)}</span>
       }
     ],
     []
@@ -208,11 +170,8 @@ export function AdminOrdersDataTable() {
     state: {
       pagination: paginationState
     },
-    onPaginationChange: (updater) => {
-      const next =
-        typeof updater === 'function'
-          ? updater(paginationState)
-          : updater
+    onPaginationChange: updater => {
+      const next = typeof updater === 'function' ? updater(paginationState) : updater
 
       if (next.pageSize !== perPage) {
         setPerPage(next.pageSize)
@@ -233,14 +192,14 @@ export function AdminOrdersDataTable() {
           <Input
             placeholder='Search order number or customer...'
             value={search}
-            onChange={(event) => setSearch(event.target.value)}
+            onChange={event => setSearch(event.target.value)}
             className='md:max-w-sm'
           />
 
           <select
             value={status}
-            onChange={(event) => setStatus(event.target.value)}
-            className='h-9 rounded-md border bg-background px-3 text-sm'
+            onChange={event => setStatus(event.target.value)}
+            className='bg-background h-9 rounded-md border px-3 text-sm'
           >
             <option value=''>All order statuses</option>
             <option value='pending_payment'>Pending payment</option>
@@ -250,8 +209,8 @@ export function AdminOrdersDataTable() {
 
           <select
             value={paymentStatus}
-            onChange={(event) => setPaymentStatus(event.target.value)}
-            className='h-9 rounded-md border bg-background px-3 text-sm'
+            onChange={event => setPaymentStatus(event.target.value)}
+            className='bg-background h-9 rounded-md border px-3 text-sm'
           >
             <option value=''>All payment statuses</option>
             <option value='pending'>Pending</option>
@@ -263,13 +222,7 @@ export function AdminOrdersDataTable() {
           <Button
             variant='outline'
             onClick={resetFilters}
-            disabled={
-              !search &&
-              !status &&
-              !paymentStatus &&
-              !dateFrom &&
-              !dateTo
-            }
+            disabled={!search && !status && !paymentStatus && !dateFrom && !dateTo}
           >
             Clear filters
           </Button>
@@ -277,27 +230,18 @@ export function AdminOrdersDataTable() {
 
         <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
           <div className='flex items-center gap-2'>
-            <span className='text-muted-foreground text-sm'>
-              From
-            </span>
+            <span className='text-muted-foreground text-sm'>From</span>
             <Input
               type='date'
               value={dateFrom}
-              onChange={(event) => setDateFrom(event.target.value)}
+              onChange={event => setDateFrom(event.target.value)}
               className='w-auto'
             />
           </div>
 
           <div className='flex items-center gap-2'>
-            <span className='text-muted-foreground text-sm'>
-              To
-            </span>
-            <Input
-              type='date'
-              value={dateTo}
-              onChange={(event) => setDateTo(event.target.value)}
-              className='w-auto'
-            />
+            <span className='text-muted-foreground text-sm'>To</span>
+            <Input type='date' value={dateTo} onChange={event => setDateTo(event.target.value)} className='w-auto' />
           </div>
         </div>
       </div>
@@ -306,16 +250,11 @@ export function AdminOrdersDataTable() {
       <div className='overflow-hidden rounded-md border'>
         <Table>
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
+            {table.getHeaderGroups().map(headerGroup => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
+                {headerGroup.headers.map(header => (
                   <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
+                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
               </TableRow>
@@ -325,41 +264,27 @@ export function AdminOrdersDataTable() {
           <TableBody>
             {loading ? (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className='h-32 text-center'
-                >
+                <TableCell colSpan={columns.length} className='h-32 text-center'>
                   Loading orders...
                 </TableCell>
               </TableRow>
             ) : error ? (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className='h-32 text-center text-destructive'
-                >
+                <TableCell colSpan={columns.length} className='text-destructive h-32 text-center'>
                   {error}
                 </TableCell>
               </TableRow>
             ) : orders.length === 0 ? (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className='h-32 text-center text-muted-foreground'
-                >
+                <TableCell colSpan={columns.length} className='text-muted-foreground h-32 text-center'>
                   No orders found.
                 </TableCell>
               </TableRow>
             ) : (
-              table.getRowModel().rows.map((row) => (
+              table.getRowModel().rows.map(row => (
                 <TableRow key={row.original.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
+                  {row.getVisibleCells().map(cell => (
+                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
                 </TableRow>
               ))
@@ -381,22 +306,17 @@ export function AdminOrdersDataTable() {
         <div className='flex items-center gap-2'>
           <select
             value={perPage}
-            onChange={(event) => setPerPage(Number(event.target.value))}
-            className='h-9 rounded-md border bg-background px-2 text-sm'
+            onChange={event => setPerPage(Number(event.target.value))}
+            className='bg-background h-9 rounded-md border px-2 text-sm'
           >
-            {[10, 20, 50, 100].map((size) => (
+            {[10, 20, 50, 100].map(size => (
               <option key={size} value={size}>
                 {size} per page
               </option>
             ))}
           </select>
 
-          <Button
-            variant='outline'
-            size='sm'
-            onClick={() => setPage(page - 1)}
-            disabled={page <= 1 || loading}
-          >
+          <Button variant='outline' size='sm' onClick={() => setPage(page - 1)} disabled={page <= 1 || loading}>
             Previous
           </Button>
 
