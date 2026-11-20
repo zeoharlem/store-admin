@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 
 // Next Imports
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Kumbh_Sans } from 'next/font/google'
+import { Geist, Geist_Mono, Kumbh_Sans, Outfit } from 'next/font/google'
 
 // Third-party Imports
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
@@ -23,6 +23,11 @@ import DownloadButton from '@/components/layout/Download'
 
 const kumbhSans = Kumbh_Sans({
   variable: "--font-kumbh",
+  subsets: ["latin"],
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
 });
 
@@ -70,7 +75,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
     <html
       lang='en'
-      className={cn(kumbhSans.variable, geistSans.variable, geistMono.variable, 'flex min-h-full w-full antialiased')}
+      className={cn(outfit.variable, kumbhSans.variable, geistSans.variable, geistMono.variable, 'flex min-h-full w-full antialiased')}
       data-scroll-behavior='smooth'
       suppressHydrationWarning
     >

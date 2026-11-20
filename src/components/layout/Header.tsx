@@ -6,7 +6,7 @@ import { Fragment } from 'react'
 import { usePathname } from 'next/navigation'
 
 // Third-party Imports
-import { LanguagesIcon } from 'lucide-react'
+import { ExternalLink, LanguagesIcon } from 'lucide-react'
 
 // Component Imports
 import LanguageDropdown from '@/components/shared/LanguageDropdown'
@@ -23,6 +23,8 @@ import {
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
+
+import { buttonVariants } from '@/components/ui/button'
 
 const Header = () => {
   const pathname = usePathname()
@@ -45,7 +47,7 @@ const Header = () => {
                 return (
                   <Fragment key={href}>
                     <BreadcrumbItem>
-                      {isLast ? <BreadcrumbPage>{label}</BreadcrumbPage> : <BreadcrumbLink>{label}</BreadcrumbLink>}
+                      {isLast ? <BreadcrumbPage>{label}</BreadcrumbPage> : <BreadcrumbLink href={href}>{label}</BreadcrumbLink>}
                     </BreadcrumbItem>
                     {!isLast && <BreadcrumbSeparator />}
                   </Fragment>
@@ -55,20 +57,22 @@ const Header = () => {
           </Breadcrumb>
         </div>
         <div className='flex items-center gap-1.5'>
-          {/* GitHub Button */}
+          {/* GitHub Link */}
           <div className='pt-2 max-md:hidden'>
             <a
-              className='github-button'
               href='https://github.com/shadcnstudio/shadcn-nextjs-admincn-admin-template-free'
-              data-icon='octicon-star'
-              data-size='large'
-              data-show-count='true'
-              aria-label='Star shadcnstudio/shadcn-studio on GitHub'
+              target='_blank'
+              rel='noopener noreferrer'
+              className={buttonVariants({
+                variant: 'outline',
+                size: 'sm'
+              })}
             >
-              Star
+              Star on GitHub
+              <ExternalLink className='ml-2 size-3.5' />
             </a>
           </div>
-          <script async defer src='https://buttons.github.io/buttons.js'></script>
+          {/*<script async defer src='https://buttons.github.io/buttons.js'></script>*/}
           <ModeToggle />
           <LanguageDropdown
             trigger={
