@@ -5,14 +5,16 @@ import Link from 'next/link'
 import { ArrowLeft, ExternalLink, MapPin, Package, Truck, UserRound } from 'lucide-react'
 
 import { useAdminOrderDetails } from '@/features/orders/presentation/hooks/use-admin-order-details'
+import { CancelAdminOrderDialog } from '@/features/orders/presentation/components/cancel-admin-order-dialog'
 
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Skeleton } from '@/components/ui/skeleton'
 import { OrderActivityTimeline } from './order-activity-timeline'
+import { OrderPaymentInformation } from './order-payment-information'
 
 import type {
   AdminOrderDetails,
@@ -276,7 +278,7 @@ function OrderDetailsSkeleton() {
   )
 }
 
-function OrderDetailsContent({ order }: { order: AdminOrderDetails }) {
+function OrderDetailsContent({ order, onOrderCancelled }: { order: AdminOrderDetails; onOrderCancelled: () => void }) {
   const customerName = order.customer
     ? `${order.customer.first_name} ${order.customer.last_name}`.trim()
     : 'Unknown customer'
@@ -285,15 +287,21 @@ function OrderDetailsContent({ order }: { order: AdminOrderDetails }) {
     <div className='space-y-6'>
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div className='flex items-start gap-3'>
-          <Button variant='outline' size='icon'>
-            <Link href='/orders' aria-label='Back to orders'>
-              <ArrowLeft className='size-4' />
-            </Link>
-          </Button>
+          <Link
+            href='/orders'
+            aria-label='Back to orders'
+            className={buttonVariants({
+              variant: 'outline',
+              size: 'icon'
+            })}
+          >
+            <ArrowLeft className='size-4' />
+          </Link>
 
           <div className='space-y-1'>
             <div className='flex flex-wrap items-center gap-2'>
               <h1 className='text-2xl font-semibold tracking-tight'>Order #{order.order_number}</h1>
+
               <StatusBadge status={order.status} />
               <StatusBadge status={order.payment_status} />
             </div>
@@ -301,6 +309,14 @@ function OrderDetailsContent({ order }: { order: AdminOrderDetails }) {
             <p className='text-muted-foreground text-sm'>Placed on {formatDate(order.created_at)}</p>
           </div>
         </div>
+
+        {order.status === 'pending_payment' &&
+          order.payment_status !== 'paid' &&
+          !order.paid_at &&
+          order.vendor_orders.length > 0 &&
+          order.vendor_orders.every(vendorOrder => vendorOrder.status === 'pending') && (
+            <CancelAdminOrderDialog orderId={order.id} onCancelled={onOrderCancelled} />
+          )}
       </div>
 
       <div className='grid gap-6 lg:grid-cols-3'>
@@ -339,9 +355,9 @@ function OrderDetailsContent({ order }: { order: AdminOrderDetails }) {
             </Card>
           )}
 
-          <OrderActivityTimeline
-            history={order.status_history ?? []}
-          />
+          <OrderPaymentInformation orderId={order.id} />
+
+          <OrderActivityTimeline history={order.status_history ?? []} />
         </div>
 
         <div className='space-y-6'>
@@ -406,7 +422,7 @@ function OrderDetailsContent({ order }: { order: AdminOrderDetails }) {
 }
 
 export function AdminOrderDetails({ orderId }: { orderId: string }) {
-  const { data, isLoading, error } = useAdminOrderDetails(orderId)
+  const { data, isLoading, error, refetch } = useAdminOrderDetails(orderId)
 
   if (isLoading) {
     return <OrderDetailsSkeleton />
@@ -432,5 +448,5 @@ export function AdminOrderDetails({ orderId }: { orderId: string }) {
     )
   }
 
-  return <OrderDetailsContent order={data} />
+  return <OrderDetailsContent order={data} onOrderCancelled={refetch} />
 }

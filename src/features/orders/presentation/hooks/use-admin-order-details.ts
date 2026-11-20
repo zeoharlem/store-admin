@@ -1,6 +1,7 @@
+
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import type { AdminOrderDetails } from '@/features/orders/domain/entities/order-details'
 import { getAdminOrderDetailsUseCase } from '@/features/orders/application/usecases/get-admin-order-details.usecase'
@@ -11,35 +12,31 @@ interface OrderDetailsState {
   error: string | null
 }
 
+const initialState: OrderDetailsState = {
+  data: null,
+  isLoading: true,
+  error: null
+}
+
 export function useAdminOrderDetails(orderId: string) {
-  const [state, setState] = useState<OrderDetailsState>({
-    data: null,
-    isLoading: true,
-    error: null
-  })
+  const [state, setState] = useState<OrderDetailsState>(initialState)
+  const [reloadKey, setReloadKey] = useState(0)
+
+  const refetch = useCallback(() => {
+    setReloadKey(current => current + 1)
+  }, [])
 
   useEffect(() => {
-    if (!orderId) {
-      setState({
-        data: null,
-        isLoading: false,
-        error: 'An order ID is required.'
-      })
-
-      return
-    }
+    if (!orderId) return
 
     const controller = new AbortController()
 
     async function loadOrder() {
-      setState({
-        data: null,
-        isLoading: true,
-        error: null
-      })
-
       try {
-        const data = await getAdminOrderDetailsUseCase.execute(orderId, controller.signal)
+        const data = await getAdminOrderDetailsUseCase.execute(
+          orderId,
+          controller.signal
+        )
 
         if (!controller.signal.aborted) {
           setState({
@@ -51,7 +48,10 @@ export function useAdminOrderDetails(orderId: string) {
       } catch (error) {
         if (controller.signal.aborted) return
 
-        const message = error instanceof Error ? error.message : 'Unable to load order details.'
+        const message =
+          error instanceof Error
+            ? error.message
+            : 'Unable to load order details.'
 
         setState({
           data: null,
@@ -64,7 +64,19 @@ export function useAdminOrderDetails(orderId: string) {
     void loadOrder()
 
     return () => controller.abort()
-  }, [orderId])
+  }, [orderId, reloadKey])
 
-  return state
+  if (!orderId) {
+    return {
+      data: null,
+      isLoading: false,
+      error: 'An order ID is required.',
+      refetch
+    }
+  }
+
+  return {
+    ...state,
+    refetch
+  }
 }
