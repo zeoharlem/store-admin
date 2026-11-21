@@ -456,28 +456,28 @@ const SidebarLayout = () => {
   // Anything absent from this map falls back to "open if it holds the active route".
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({})
 
-  useEffect(() => {
-    let mounted = true
-
-    getNavApps().then(data => {
-      if (!mounted) return
-
-      setExternalApps(
-        data.map(app => ({
-          icon: app.icon as MenuItem['icon'],
-          label: app.name,
-          href: app.href,
-          badge: 'Pro',
-          badgeClassName: 'right-8',
-          ...(app.openInNewTab ? { target: '_blank' as const } : {})
-        }))
-      )
-    })
-
-    return () => {
-      mounted = false
-    }
-  }, [])
+  // useEffect(() => {
+  //   let mounted = true
+  //
+  //   getNavApps().then(data => {
+  //     if (!mounted) return
+  //
+  //     setExternalApps(
+  //       data.map(app => ({
+  //         icon: app.icon as MenuItem['icon'],
+  //         label: app.name,
+  //         href: app.href,
+  //         badge: 'Pro',
+  //         badgeClassName: 'right-8',
+  //         ...(app.openInNewTab ? { target: '_blank' as const } : {})
+  //       }))
+  //     )
+  //   })
+  //
+  //   return () => {
+  //     mounted = false
+  //   }
+  // }, [])
 
   // Nav groups rendered in the sidebar.
   // Remove the externalApps branch when the nav-apps API is removed. Until then, this is used to merge external nav-apps into the "Apps" group.

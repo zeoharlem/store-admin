@@ -176,7 +176,7 @@ export class AuthenticatedServerAxios {
     })
   }
 
-  async request<T>(config: AxiosRequestConfig): Promise<AxiosResponse<ApiResponse<T>>> {
+  async request<T = unknown>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
     const auth = await getAuthTokens()
 
     let currentAccessToken = auth.accessToken
@@ -199,7 +199,7 @@ export class AuthenticatedServerAxios {
     headers.set('Authorization', `Bearer ${currentAccessToken}`)
 
     try {
-      return await this.client.request<ApiResponse<T>>({
+      return await this.client.request<T>({
         ...config,
         headers
       })
@@ -224,7 +224,7 @@ export class AuthenticatedServerAxios {
       retryHeaders.set('Authorization', `Bearer ${tokens.access_token}`)
 
       try {
-        return await this.client.request<ApiResponse<T>>({
+        return await this.client.request<T>({
           ...config,
           headers: retryHeaders
         })
@@ -243,7 +243,7 @@ export class AuthenticatedServerAxios {
     }
   }
 
-  get<T>(url: string, config?: AxiosRequestConfig) {
+  get<T = unknown>(url: string, config?: AxiosRequestConfig) {
     return this.request<T>({
       ...config,
       method: 'GET',
@@ -251,7 +251,11 @@ export class AuthenticatedServerAxios {
     })
   }
 
-  post<T>(url: string, data?: unknown, config?: AxiosRequestConfig) {
+  post<T = unknown>(
+    url: string,
+    data?: unknown,
+    config?: AxiosRequestConfig
+  ) {
     return this.request<T>({
       ...config,
       method: 'POST',
@@ -260,7 +264,11 @@ export class AuthenticatedServerAxios {
     })
   }
 
-  put<T>(url: string, data?: unknown, config?: AxiosRequestConfig) {
+  put<T = unknown>(
+    url: string,
+    data?: unknown,
+    config?: AxiosRequestConfig
+  ) {
     return this.request<T>({
       ...config,
       method: 'PUT',
@@ -269,7 +277,11 @@ export class AuthenticatedServerAxios {
     })
   }
 
-  patch<T>(url: string, data?: unknown, config?: AxiosRequestConfig) {
+  patch<T = unknown>(
+    url: string,
+    data?: unknown,
+    config?: AxiosRequestConfig
+  ) {
     return this.request<T>({
       ...config,
       method: 'PATCH',
@@ -278,7 +290,7 @@ export class AuthenticatedServerAxios {
     })
   }
 
-  delete<T>(url: string, config?: AxiosRequestConfig) {
+  delete<T = unknown>(url: string, config?: AxiosRequestConfig) {
     return this.request<T>({
       ...config,
       method: 'DELETE',
